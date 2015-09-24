@@ -1,0 +1,3 @@
+[submodule "PokeRNG"]
+	path = PokeRNG
+	url = https://github.com/odanado/PokeRNG
