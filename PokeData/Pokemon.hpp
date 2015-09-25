@@ -9,15 +9,10 @@
 #include "PokemonData.hpp"
 
 namespace PokeData {
-
-class Pokemon {
-private:
-    static std::array<PokemonData, 663> createPokemons();
-    static std::map<std::string, int> createPokemonIndexes();
-public:
-    static const std::array<PokemonData,663> pokemons;
-    static const std::map<std::string,int> pokemonIndexes;
-};
+    std::array<PokemonData, 663> createPokemons();
+    std::map<std::string, int> createPokemonIndexes();
+    const std::array<PokemonData,663> pokemons = createPokemons();
+    const std::map<std::string,int> pokemonIndexes = createPokemonIndexes();
 
 }
 

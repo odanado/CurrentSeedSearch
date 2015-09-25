@@ -43,6 +43,7 @@ HEADERS  += mainwindow.h \
     PokeRNG/PokeRNG/PokeRNG.hpp \
     PokeRNG/PokeRNG/ROMType.hpp \
     PokeData/BaseStats.hpp \
+    PokeData/PokeData.hpp \
     PokeData/Pokemon.hpp \
     PokeData/PokemonData.hpp
 

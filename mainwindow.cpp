@@ -35,7 +35,7 @@ void MainWindow::on_BTN_EXEC_clicked()
 
 void MainWindow::initCB_PokemonName() {
     QStringList list;
-    for(const auto &pokemon : PokeData::Pokemon::pokemons) {
+    for(const auto &pokemon : PokeData::pokemons) {
         QString name(QString::fromStdString(pokemon.getName()));
         list.append(name);
     }
@@ -52,8 +52,8 @@ void MainWindow::on_CB_PokemonName_currentIndexChanged(int index)
 void MainWindow::on_CB_PokemonName_editTextChanged(const QString &arg1)
 {
     std::string name = arg1.toStdString();
-    auto it = PokeData::Pokemon::pokemonIndexes.find(name);
-    if(it != PokeData::Pokemon::pokemonIndexes.end()) {
+    auto it = PokeData::pokemonIndexes.find(name);
+    if(it != PokeData::pokemonIndexes.end()) {
         changePokemonIndex(it->second);
     }
 }
@@ -62,7 +62,7 @@ void MainWindow::on_CB_PokemonName_editTextChanged(const QString &arg1)
 void MainWindow::changePokemonIndex(int index) {
 
     QString text;
-    const auto &baseStats = PokeData::Pokemon::pokemons[index].getBaseStats();
+    const auto &baseStats = PokeData::pokemons[index].getBaseStats();
     text.sprintf("%d-%d-%d-%d-%d-%d",
                  baseStats.getHP(),baseStats.getAttack(),baseStats.getDefence(),
                  baseStats.getSpAtk(),baseStats.getSpDef(),baseStats.getSpeed());

@@ -2,7 +2,7 @@
 
 namespace PokeData {
 
-std::array<PokemonData,663> Pokemon::createPokemons() {
+std::array<PokemonData,663> createPokemons() {
     std::array<PokemonData,663> pokemons = {
         PokemonData("フシギダネ", BaseStats(45,49,49,65,65,45)), PokemonData("フシギソウ", BaseStats(60,62,63,80,80,60)), PokemonData("フシギバナ", BaseStats(80,82,83,100,100,80)), 
         PokemonData("ヒトカゲ", BaseStats(39,52,43,60,50,65)), PokemonData("リザード", BaseStats(58,64,58,80,65,80)), PokemonData("リザードン", BaseStats(78,84,78,109,85,100)), 
@@ -230,7 +230,7 @@ std::array<PokemonData,663> Pokemon::createPokemons() {
     return pokemons;
 }
 
-std::map<std::string, int> Pokemon::createPokemonIndexes() {
+std::map<std::string, int> createPokemonIndexes() {
     std::map<std::string, int> pokemonIndexes = {
         {"フシギダネ", 0},{"フシギソウ", 1},{"フシギバナ", 2},{"ヒトカゲ", 3},{"リザード", 4},{"リザードン", 5},{"ゼニガメ", 6},{"カメール", 7},{"カメックス", 8},{"キャタピー", 9},
         {"トランセル", 10},{"バタフリー", 11},{"ビードル", 12},{"コクーン", 13},{"スピアー", 14},{"ポッポ", 15},{"ピジョン", 16},{"ピジョット", 17},{"コラッタ", 18},{"ラッタ", 19},
@@ -303,9 +303,6 @@ std::map<std::string, int> Pokemon::createPokemonIndexes() {
 
     return pokemonIndexes;
 }
-
-const std::array<PokemonData, 663> Pokemon::pokemons = Pokemon::createPokemons();
-const std::map<std::string, int> Pokemon::pokemonIndexes = Pokemon::createPokemonIndexes();
 
 }
 

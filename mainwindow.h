@@ -6,7 +6,7 @@
 #include <QString>
 
 #include <PokeRNG/PokeRNG.hpp>
-#include <PokeData/Pokemon.hpp>
+#include <PokeData/PokeData.hpp>
 #include "sss4config.h"
 
 namespace Ui {
