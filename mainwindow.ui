@@ -30,173 +30,34 @@
      <attribute name="title">
       <string>実数値から</string>
      </attribute>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QComboBox" name="CB_PokemonName">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>5</x>
         <y>10</y>
-        <width>370</width>
-        <height>64</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="Label_Upper">
-         <property name="text">
-          <string>上限</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <layout class="QHBoxLayout" name="HL_UpperIVs">
-         <item>
-          <widget class="QSpinBox" name="SB_UpperH">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_UpperA">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_UpperB">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_UpperC">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_UpperD">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_UpperS">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-           <property name="value">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="Label_Lower">
-         <property name="text">
-          <string>下限</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <layout class="QHBoxLayout" name="HL_LowerIVs">
-         <item>
-          <widget class="QSpinBox" name="SB_LowerH">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_LowerA">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_LowerB">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_LowerC">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_LowerD">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="SB_LowerS">
-           <property name="maximum">
-            <number>31</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>80</y>
-        <width>200</width>
+        <width>166</width>
         <height>26</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="Label_Range">
-         <property name="text">
-          <string>消費の範囲</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_FirstFrameAdvancement"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="Label_FrameAdvancementRange">
-         <property name="text">
-          <string>〜</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_LastFrameAdvancement"/>
-       </item>
-      </layout>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="insertPolicy">
+       <enum>QComboBox::NoInsert</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Label_BaseStats">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>15</y>
+        <width>216</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>000-000-000-000-000-000</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

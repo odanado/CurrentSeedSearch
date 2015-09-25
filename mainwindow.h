@@ -2,8 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringList>
+#include <QString>
 
 #include <PokeRNG/PokeRNG.hpp>
+#include <PokeData/Pokemon.hpp>
 #include "sss4config.h"
 
 namespace Ui {
@@ -21,10 +24,17 @@ public:
 private slots:
     void on_BTN_EXEC_clicked();
 
+    void on_CB_PokemonName_currentIndexChanged(int index);
+
+    void on_CB_PokemonName_editTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
     bool isSetParam;
+
+    void initCB_PokemonName();
+    void changePokemonIndex(int);
 };
 
 #endif // MAINWINDOW_H
