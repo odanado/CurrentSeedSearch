@@ -23,7 +23,10 @@ SOURCES += main.cpp\
     PokeRNG/PokeRNG/LCG.cpp \
     PokeRNG/PokeRNG/MT.cpp \
     PokeRNG/PokeRNG/Parameters5Gen.cpp \
-    PokeRNG/PokeRNG/ROMType.cpp
+    PokeRNG/PokeRNG/ROMType.cpp \
+    PokeData/BaseStats.cpp \
+    PokeData/Pokemon.cpp \
+    PokeData/PokemonData.cpp
 
 HEADERS  += mainwindow.h \
     sss4config.h \
@@ -38,7 +41,10 @@ HEADERS  += mainwindow.h \
     PokeRNG/PokeRNG/MT.hpp \
     PokeRNG/PokeRNG/Parameters5Gen.hpp \
     PokeRNG/PokeRNG/PokeRNG.hpp \
-    PokeRNG/PokeRNG/ROMType.hpp
+    PokeRNG/PokeRNG/ROMType.hpp \
+    PokeData/BaseStats.hpp \
+    PokeData/Pokemon.hpp \
+    PokeData/PokemonData.hpp
 
 FORMS    += mainwindow.ui
 
