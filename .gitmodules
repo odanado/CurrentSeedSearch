@@ -1,3 +1,6 @@
 [submodule "PokeRNG"]
 	path = PokeRNG
 	url = https://github.com/odanado/PokeRNG
+[submodule "PokeData"]
+	path = PokeData
+	url = https://github.com/odanado/PokeData
