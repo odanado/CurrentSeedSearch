@@ -25,8 +25,7 @@ SOURCES += main.cpp\
     PokeRNG/PokeRNG/Parameters5Gen.cpp \
     PokeRNG/PokeRNG/ROMType.cpp \
     PokeData/BaseStats.cpp \
-    PokeData/Pokemon.cpp \
-    PokeData/PokemonData.cpp
+    PokeData/Pokemon.cpp
 
 HEADERS  += mainwindow.h \
     sss4config.h \
