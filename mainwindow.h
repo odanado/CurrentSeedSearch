@@ -35,6 +35,8 @@ private:
 
     void initCB_PokemonName();
     void changePokemonIndex(int);
+    void initCB_NatureName();
+
 };
 
 #endif // MAINWINDOW_H

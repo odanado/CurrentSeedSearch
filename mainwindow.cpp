@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     initCB_PokemonName();
+    initCB_NatureName();
 
 
 }
@@ -31,6 +32,17 @@ void MainWindow::on_BTN_EXEC_clicked()
         PokeRNG::u64 seed1 = lcg.next(calcSeed(param));
         ui->TE_Result->setText(QString::number(seed1,16));
     }
+}
+
+void MainWindow::initCB_NatureName() {
+    QStringList list;
+    for(const auto &nature : PokeData::natures) {
+        QString name(QString::fromStdString(nature.getName()));
+        list.append(name);
+    }
+
+    ui->CB_NatureName->addItems(list);
+    ui->CB_NatureName->setEditText(list.front());
 }
 
 void MainWindow::initCB_PokemonName() {
