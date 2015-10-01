@@ -9,6 +9,7 @@
 #include <PokeRNG/PokeRNG.hpp>
 #include <PokeData/PokeData.hpp>
 #include "sss4config.h"
+#include "satisfiediv.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,9 @@ private slots:
 
     void on_CB_PokemonName_editTextChanged(const QString &arg1);
 
+    void onDateChanged(const QString&);
+    void onComplated(const QString&);
+
 private:
     Ui::MainWindow *ui;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
@@ -41,7 +45,11 @@ private:
     int calcStats(int baseStats,int iv,int ev,int level,int mod);
     int calcHP(int baseStats,int iv,int ev,int level);
     void calcIVs();
-    QList<int> lowerIVs,upperIVs;
+    void loadDateTime();
+    QList<PokeRNG::u32> lowerIVs,upperIVs;
+    PokeRNG::DateTimeRange range;
+
+    SatisfiedIV satisfiedIV;
 
 };
 

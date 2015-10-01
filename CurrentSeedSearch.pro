@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     PokeRNG/PokeRNG/ROMType.cpp \
     PokeData/BaseStats.cpp \
     PokeData/Pokemon.cpp \
-    PokeData/Nature.cpp
+    PokeData/Nature.cpp \
+    satisfiediv.cpp
 
 HEADERS  += mainwindow.h \
     sss4config.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     PokeData/PokeData.hpp \
     PokeData/Pokemon.hpp \
     PokeData/PokemonData.hpp \
-    PokeData/Nature.hpp
+    PokeData/Nature.hpp \
+    satisfiediv.h
 
 FORMS    += mainwindow.ui
 

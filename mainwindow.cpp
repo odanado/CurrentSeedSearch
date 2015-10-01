@@ -19,9 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
     initCB_NatureName();
 
     for(int i=0;i<6;i++) {
-        lowerIVs.append(32);
-        upperIVs.append(-1);
+        lowerIVs.append(31);
+        upperIVs.append(0);
     }
+
+    connect(&satisfiedIV, SIGNAL(notifyDateChanged(const QString&)), this, SLOT(onDateChanged(const QString&)));
+    connect(&satisfiedIV, SIGNAL(notifyComplated(const QString&)), this, SLOT(onComplated(const QString&)));
 
 }
 
@@ -33,12 +36,63 @@ MainWindow::~MainWindow()
 void MainWindow::on_BTN_EXEC_clicked()
 {
     calcIVs();
+    loadDateTime();
+
+
     if(isSetParam) {
-        PokeRNG::Calc5GenSeed calcSeed;
-        PokeRNG::LCG5Gen lcg;
-        PokeRNG::u64 seed1 = lcg.next(calcSeed(param));
-        ui->TE_Result->setText(QString::number(seed1,16));
+        QString ivRange;
+        ivRange = "個体値の範囲\n";
+        for(int i=0;i<6;i++) {
+            QString t;
+            t.sprintf("%d-%d\n",lowerIVs[i],upperIVs[i]);
+            ivRange += t;
+        }
+
+        bool ok;
+        ui->TE_Result->setText(ivRange);
+        satisfiedIV.setParameter(param);
+        satisfiedIV.setLowerIVs(lowerIVs);
+        satisfiedIV.setUpperIVs(upperIVs);
+        satisfiedIV.setDateTimeRange(range);
+        satisfiedIV.setFirstFrame(ui->SB_FirstFrame->text().toInt(&ok));
+        satisfiedIV.setLastFrame(ui->SB_LastFrame->text().toInt(&ok));
+        satisfiedIV.start();
     }
+}
+
+void MainWindow::loadDateTime() {
+    bool ok;
+    PokeRNG::u32 s,t;
+
+    s=ui->SB_FirstYear->text().toInt(&ok);
+    t=ui->SB_LastYear->text().toInt(&ok);
+    range.set_year(s,t);
+
+
+    s=ui->SB_FirstMonth->text().toInt(&ok);
+    t=ui->SB_LastMonth->text().toInt(&ok);
+    range.set_month(s,t);
+
+
+    s=ui->SB_FirstDay->text().toInt(&ok);
+    t=ui->SB_LastDay->text().toInt(&ok);
+    range.set_day(s,t);
+
+
+    s=ui->SB_FirstHour->text().toInt(&ok);
+    t=ui->SB_LastHour->text().toInt(&ok);
+    range.set_hour(s,t);
+
+
+    s=ui->SB_FirstMinute->text().toInt(&ok);
+    t=ui->SB_LastMinute->text().toInt(&ok);
+    range.set_minute(s,t);
+
+
+    s=ui->SB_FirstSecond->text().toInt(&ok);
+    t=ui->SB_LastSecond->text().toInt(&ok);
+    range.set_second(s,t);
+
 }
 
 void MainWindow::calcIVs() {
@@ -67,7 +121,7 @@ void MainWindow::calcIVs() {
     baseStats.append(baseStatsTmp.getSpeed());
     level = ui->SB_Level->text().toInt(&ok);
 
-    for(int iv=0;iv<32;iv++) {
+    for(PokeRNG::u32 iv=0;iv<32;iv++) {
         int hp = calcHP(baseStats[0],iv,0,level);
         if(hp == stats[0]) {
             lowerIVs[0]=std::min(lowerIVs[0],iv);
@@ -76,7 +130,7 @@ void MainWindow::calcIVs() {
     }
 
     for(int i=1;i<6;i++) {
-        for(int iv=0;iv<32;iv++) {
+        for(PokeRNG::u32 iv=0;iv<32;iv++) {
             int stat = calcStats(baseStats[i],iv,0,level,natureMod[i-1]);
             if(stat == stats[i]) {
                 lowerIVs[i]=std::min(lowerIVs[i],iv);
@@ -146,4 +200,12 @@ int MainWindow::calcHP(int baseStats, int iv, int ev, int level) {
     int stats;
     stats = (baseStats*2 + iv + ev/4) * level/100 + 10 + level;
     return stats;
+}
+
+void MainWindow::onDateChanged(const QString &title) {
+    setWindowTitle(title);
+}
+
+void MainWindow::onComplated(const QString &result) {
+    ui->TE_Result->append(result);
 }

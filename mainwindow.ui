@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>CurrentSeedSearch</class>
+ <widget class="QMainWindow" name="CurrentSeedSearch">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,8 +17,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>160</y>
+      <x>5</x>
+      <y>120</y>
       <width>416</width>
       <height>206</height>
      </rect>
@@ -91,7 +91,7 @@
        <number>50</number>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -145,38 +145,37 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>105</y>
+        <width>187</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="Label_Frame">
+         <property name="text">
+          <string>消費の範囲: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="SB_FirstFrame"/>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="SB_LastFrame"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>レポ針から</string>
      </attribute>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="BTN_KeyInput">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>115</y>
-      <width>115</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>キー入力</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BTN_ParameterSetting">
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>115</y>
-      <width>141</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>パラメータ設定</string>
-    </property>
    </widget>
    <widget class="QGroupBox" name="GB_DateTime">
     <property name="geometry">
@@ -396,7 +395,7 @@
       <item row="0" column="1">
        <widget class="QLabel" name="Label_FirstSecond">
         <property name="text">
-         <string>分</string>
+         <string>秒</string>
         </property>
        </widget>
       </item>
@@ -417,7 +416,7 @@
       <item row="0" column="4">
        <widget class="QLabel" name="Label_LastSecond">
         <property name="text">
-         <string>分</string>
+         <string>秒</string>
         </property>
        </widget>
       </item>
