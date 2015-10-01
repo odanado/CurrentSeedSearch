@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStringList>
 #include <QString>
+#include <QList>
 
 #include <PokeRNG/PokeRNG.hpp>
 #include <PokeData/PokeData.hpp>
@@ -36,6 +37,11 @@ private:
     void initCB_PokemonName();
     void changePokemonIndex(int);
     void initCB_NatureName();
+
+    int calcStats(int baseStats,int iv,int ev,int level,int mod);
+    int calcHP(int baseStats,int iv,int ev,int level);
+    void calcIVs();
+    QList<int> lowerIVs,upperIVs;
 
 };
 
