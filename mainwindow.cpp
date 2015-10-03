@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initCB_PokemonName();
     initCB_NatureName();
+    updateStats();
 
     for(int i=0;i<6;i++) {
         lowerIVs.append(31);
@@ -180,24 +181,24 @@ void MainWindow::initCB_PokemonName() {
     ui->CB_PokemonName->setEditText(*list.begin());
 }
 
-void MainWindow::on_CB_PokemonName_currentIndexChanged(int index)
-{
-    changePokemonIndex(index);
-}
 
-void MainWindow::on_CB_PokemonName_editTextChanged(const QString &arg1)
-{
-    std::string name = arg1.toStdString();
-    auto it = PokeData::pokemonIndexes.find(name);
-    if(it != PokeData::pokemonIndexes.end()) {
-        changePokemonIndex(it->second);
-    }
-}
+void MainWindow::updateStats() {
+    bool ok;
+
+    const auto &baseStats = PokeData::pokemons[ui->CB_PokemonName->currentIndex()].getBaseStats();
+    const auto &nature = PokeData::natures[ui->CB_NatureName->currentIndex()];
+    int level = ui->SB_Level->text().toInt(&ok);
+
+    ui->SB_StatsH->setValue(calcHP(baseStats.getHP(),31,0,level));
+
+    ui->SB_StatsA->setValue(calcStats(baseStats.getAttack(),31,9,level,nature.getAttackMod()));
+    ui->SB_StatsB->setValue(calcStats(baseStats.getDefense(),31,9,level,nature.getDefenseMod()));
+    ui->SB_StatsC->setValue(calcStats(baseStats.getSpAtk(),31,9,level,nature.getSpAtkMod()));
+    ui->SB_StatsD->setValue(calcStats(baseStats.getSpDef(),31,9,level,nature.getSpDefMod()));
+    ui->SB_StatsS->setValue(calcStats(baseStats.getSpeed(),31,9,level,nature.getSpeedMod()));
 
 
-void MainWindow::changePokemonIndex(int index) {
-    QString text;
-    const auto &baseStats = PokeData::pokemons[index].getBaseStats();
+
 }
 
 int MainWindow::calcStats(int baseStats, int iv, int ev, int level, int mod) {
@@ -220,3 +221,38 @@ void MainWindow::onDateChanged(const QString &title) {
 void MainWindow::onComplated(const QString &result) {
     ui->TE_Result->append(result);
 }
+
+void MainWindow::on_CB_PokemonName_currentIndexChanged(int index)
+{
+    updateStats();
+}
+
+void MainWindow::on_CB_PokemonName_currentTextChanged(const QString &arg1)
+{
+    updateStats();
+}
+
+void MainWindow::on_CB_PokemonName_editTextChanged(const QString &arg1)
+{
+    std::string name = arg1.toStdString();
+    auto it = PokeData::pokemonIndexes.find(name);
+    if(it != PokeData::pokemonIndexes.end()) {
+        updateStats();
+    }
+}
+
+void MainWindow::on_SB_Level_valueChanged(int arg1)
+{
+    updateStats();
+}
+
+void MainWindow::on_CB_NatureName_currentTextChanged(const QString &arg1)
+{
+    updateStats();
+}
+
+void MainWindow::on_CB_NatureName_currentIndexChanged(int index)
+{
+    updateStats();
+}
+

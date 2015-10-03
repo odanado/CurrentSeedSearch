@@ -55,7 +55,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>185</x>
@@ -87,7 +87,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>6</x>
@@ -130,7 +130,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -332,7 +332,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>28</x>
@@ -386,7 +386,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>265</x>
@@ -419,22 +419,9 @@
       </item>
      </layout>
     </widget>
+    <zorder>layoutWidget</zorder>
+    <zorder>layoutWidget</zorder>
     <zorder>layoutWidget_4</zorder>
-    <zorder>Label_Second</zorder>
-    <zorder>SB_Hour</zorder>
-    <zorder>SB_Second</zorder>
-    <zorder>Label_Hour</zorder>
-    <zorder>Label_Minute</zorder>
-    <zorder>SB_Minute</zorder>
-    <zorder>Label_Hour</zorder>
-    <zorder>SB_Hour</zorder>
-    <zorder>Label_Minute</zorder>
-    <zorder>SB_Minute</zorder>
-    <zorder>Label_Second</zorder>
-    <zorder>SB_Second</zorder>
-    <zorder>SB_SecondRange</zorder>
-    <zorder>Label_PlusMinus</zorder>
-    <zorder>Label_SecondRange</zorder>
    </widget>
    <widget class="QTextEdit" name="TE_Result">
     <property name="geometry">

@@ -33,14 +33,23 @@ private slots:
     void onDateChanged(const QString&);
     void onComplated(const QString&);
 
+    void on_SB_Level_valueChanged(int arg1);
+
+    void on_CB_NatureName_currentTextChanged(const QString &arg1);
+
+    void on_CB_NatureName_currentIndexChanged(int index);
+
+    void on_CB_PokemonName_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
     bool isSetParam;
 
     void initCB_PokemonName();
-    void changePokemonIndex(int);
     void initCB_NatureName();
+
+    void updateStats();
 
     int calcStats(int baseStats,int iv,int ev,int level,int mod);
     int calcHP(int baseStats,int iv,int ev,int level);
