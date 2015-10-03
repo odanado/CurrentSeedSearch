@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     isSetParam = false;
     SSS4Config sss4Config;
     if(sss4Config.parse()) {
@@ -195,14 +196,8 @@ void MainWindow::on_CB_PokemonName_editTextChanged(const QString &arg1)
 
 
 void MainWindow::changePokemonIndex(int index) {
-
     QString text;
     const auto &baseStats = PokeData::pokemons[index].getBaseStats();
-    text.sprintf("%d-%d-%d-%d-%d-%d",
-                 baseStats.getHP(),baseStats.getAttack(),baseStats.getDefense(),
-                 baseStats.getSpAtk(),baseStats.getSpDef(),baseStats.getSpeed());
-
-    ui->Label_BaseStats->setText(text);
 }
 
 int MainWindow::calcStats(int baseStats, int iv, int ev, int level, int mod) {

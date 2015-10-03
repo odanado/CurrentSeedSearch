@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>710</width>
+    <width>733</width>
     <height>457</height>
    </rect>
   </property>
@@ -19,8 +19,8 @@
      <rect>
       <x>5</x>
       <y>120</y>
-      <width>416</width>
-      <height>206</height>
+      <width>456</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -30,127 +30,12 @@
      <attribute name="title">
       <string>実数値から</string>
      </attribute>
-     <widget class="QComboBox" name="CB_PokemonName">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>10</y>
-        <width>166</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="editable">
-       <bool>true</bool>
-      </property>
-      <property name="insertPolicy">
-       <enum>QComboBox::NoInsert</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Label_BaseStats">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>15</y>
-        <width>216</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>000-000-000-000-000-000</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="CB_NatureName">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>40</y>
-        <width>106</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="currentText">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="SB_Level">
-      <property name="geometry">
-       <rect>
-        <x>175</x>
-        <y>40</y>
-        <width>47</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-      <property name="value">
-       <number>50</number>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>382</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QSpinBox" name="SB_StatsH">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_StatsA">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_StatsB">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_StatsC">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_StatsD">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="SB_StatsS">
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>105</y>
-        <width>187</width>
+        <x>5</x>
+        <y>205</y>
+        <width>291</width>
         <height>26</height>
        </rect>
       </property>
@@ -158,7 +43,7 @@
        <item>
         <widget class="QLabel" name="Label_Frame">
          <property name="text">
-          <string>消費の範囲: </string>
+          <string>個体値乱数列の消費数の範囲: </string>
          </property>
         </widget>
        </item>
@@ -167,6 +52,201 @@
        </item>
        <item>
         <widget class="QSpinBox" name="SB_LastFrame"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>185</x>
+        <y>10</y>
+        <width>104</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Label_Level">
+         <property name="text">
+          <string>レベル</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="SB_Level">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>6</x>
+        <y>10</y>
+        <width>171</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0" columnstretch="0,1">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Label_PokemonName">
+         <property name="text">
+          <string>種族</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="CB_PokemonName">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <property name="insertPolicy">
+          <enum>QComboBox::NoInsert</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Label_NatureName">
+         <property name="text">
+          <string>性格</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="CB_NatureName">
+         <property name="currentText">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>75</y>
+        <width>296</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_4" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsH">
+           <property name="text">
+            <string>HP  </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsH">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsA">
+           <property name="text">
+            <string>攻撃</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsA">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="2">
+        <layout class="QGridLayout" name="gridLayout_10" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsB">
+           <property name="text">
+            <string>防御</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsB">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QGridLayout" name="gridLayout_7" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsC">
+           <property name="text">
+            <string>特攻</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsC">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="1">
+        <layout class="QGridLayout" name="gridLayout_8" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsD">
+           <property name="text">
+            <string>特防</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsD">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="2">
+        <layout class="QGridLayout" name="gridLayout_9" columnstretch="0,1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="Label_StatsS">
+           <property name="text">
+            <string>素早</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="SB_StatsS">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -182,7 +262,7 @@
      <rect>
       <x>5</x>
       <y>10</y>
-      <width>416</width>
+      <width>386</width>
       <height>101</height>
      </rect>
     </property>
@@ -359,7 +439,7 @@
    <widget class="QTextEdit" name="TE_Result">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>470</x>
       <y>35</y>
       <width>251</width>
       <height>261</height>
@@ -382,8 +462,8 @@
    <widget class="QLabel" name="Label_Result">
     <property name="geometry">
      <rect>
-      <x>425</x>
-      <y>10</y>
+      <x>475</x>
+      <y>15</y>
       <width>59</width>
       <height>16</height>
      </rect>
