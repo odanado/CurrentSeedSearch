@@ -55,6 +55,9 @@ QString SatisfiedIV::calc(const PokeRNG::DateTime &dateTime, const PokeRNG::u32 
 
         result = subject+result;
     }
+    else {
+        result = "";
+    }
 
     return result;
 }

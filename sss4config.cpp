@@ -25,6 +25,8 @@ bool SSS4Config::parse() {
         if(!ok) return false;
 
         timer0Min = timer0Max = configLines.at(1).toInt(&ok,16);
+        --timer0Min;
+        ++timer0Max;
         if(!ok) return false;
 
         gxstat = configLines.at(2).toInt(&ok,16);

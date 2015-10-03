@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CurrentSeedSearch</class>
- <widget class="QMainWindow" name="CurrentSeedSearch">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>971</width>
+    <width>710</width>
     <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CurrentSeedSearch</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -145,7 +145,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -182,76 +182,13 @@
      <rect>
       <x>5</x>
       <y>10</y>
-      <width>581</width>
+      <width>416</width>
       <height>101</height>
      </rect>
     </property>
     <property name="title">
      <string>日時</string>
     </property>
-    <widget class="QWidget" name="layoutWidget_3">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>25</y>
-       <width>252</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="GL_LastDateTime">
-      <item row="0" column="6">
-       <widget class="QLabel" name="Label_LastDay">
-        <property name="text">
-         <string>日</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QSpinBox" name="SB_LastDay">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>31</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="Label_LastMonth">
-        <property name="text">
-         <string>月</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QSpinBox" name="SB_LastMonth">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>12</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="Label_LastYear">
-        <property name="text">
-         <string>年</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="SB_LastYear"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="Label_Last20">
-        <property name="text">
-         <string>20</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QWidget" name="layoutWidget_4">
      <property name="geometry">
       <rect>
@@ -263,24 +200,24 @@
      </property>
      <layout class="QGridLayout" name="GL_FirstDateTime">
       <item row="0" column="0">
-       <widget class="QLabel" name="Label_First20">
+       <widget class="QLabel" name="Label_20">
         <property name="text">
          <string>20</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="SB_FirstYear"/>
+       <widget class="QSpinBox" name="SB_Year"/>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="Label_FirstYear">
+       <widget class="QLabel" name="Label_Year">
         <property name="text">
          <string>年</string>
         </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QSpinBox" name="SB_FirstMonth">
+       <widget class="QSpinBox" name="SB_Month">
         <property name="minimum">
          <number>1</number>
         </property>
@@ -290,14 +227,14 @@
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QLabel" name="Label_FirstMonth">
+       <widget class="QLabel" name="Label_Month">
         <property name="text">
          <string>月</string>
         </property>
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QSpinBox" name="SB_FirstDay">
+       <widget class="QSpinBox" name="SB_Day">
         <property name="minimum">
          <number>1</number>
         </property>
@@ -307,7 +244,7 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QLabel" name="Label_FirstDay">
+       <widget class="QLabel" name="Label_Day">
         <property name="text">
          <string>日</string>
         </property>
@@ -315,166 +252,115 @@
       </item>
      </layout>
     </widget>
-    <widget class="QLabel" name="Label_DateTimeRange">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>265</x>
-       <y>30</y>
-       <width>21</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>〜</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="layoutWidget_5">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>60</y>
-       <width>171</width>
+       <x>28</x>
+       <y>65</y>
+       <width>228</width>
        <height>26</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="GL_Minute">
+     <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QSpinBox" name="SB_FirstMinute">
+       <widget class="QSpinBox" name="SB_Hour">
         <property name="maximum">
-         <number>59</number>
+         <number>23</number>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="Label_FirstMinute">
+       <widget class="QLabel" name="Label_Hour">
         <property name="text">
-         <string>分</string>
+         <string>時</string>
         </property>
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="Label_MinuteRange">
-        <property name="text">
-         <string>〜</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QSpinBox" name="SB_LastMinute">
+       <widget class="QSpinBox" name="SB_Minute">
         <property name="maximum">
          <number>59</number>
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="Label_LastMinute">
+      <item row="0" column="3">
+       <widget class="QLabel" name="Label_Minute">
         <property name="text">
          <string>分</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QSpinBox" name="SB_Second">
+        <property name="maximum">
+         <number>59</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="Label_Second">
+        <property name="text">
+         <string>秒</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget_6">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>60</y>
-       <width>171</width>
+       <x>265</x>
+       <y>65</y>
+       <width>82</width>
        <height>26</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="GL_Second">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QSpinBox" name="SB_FirstSecond">
-        <property name="maximum">
-         <number>59</number>
+       <widget class="QLabel" name="Label_PlusMinus">
+        <property name="text">
+         <string>±</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="Label_FirstSecond">
-        <property name="text">
-         <string>秒</string>
+       <widget class="QSpinBox" name="SB_SecondRange">
+        <property name="maximum">
+         <number>3</number>
         </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="Label_SecondRange">
         <property name="text">
-         <string>〜</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QSpinBox" name="SB_LastSecond">
-        <property name="maximum">
-         <number>59</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="Label_LastSecond">
-        <property name="text">
          <string>秒</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget_7">
-     <property name="geometry">
-      <rect>
-       <x>5</x>
-       <y>60</y>
-       <width>171</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="GL_Hour">
-      <item row="0" column="0">
-       <widget class="QSpinBox" name="SB_FirstHour">
-        <property name="maximum">
-         <number>23</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="Label_FirstHour">
-        <property name="text">
-         <string>時</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="Label_HourRange">
-        <property name="text">
-         <string>〜</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QSpinBox" name="SB_LastHour">
-        <property name="maximum">
-         <number>23</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="Label_LastHour">
-        <property name="text">
-         <string>時</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <zorder>layoutWidget_4</zorder>
+    <zorder>Label_Second</zorder>
+    <zorder>SB_Hour</zorder>
+    <zorder>SB_Second</zorder>
+    <zorder>Label_Hour</zorder>
+    <zorder>Label_Minute</zorder>
+    <zorder>SB_Minute</zorder>
+    <zorder>Label_Hour</zorder>
+    <zorder>SB_Hour</zorder>
+    <zorder>Label_Minute</zorder>
+    <zorder>SB_Minute</zorder>
+    <zorder>Label_Second</zorder>
+    <zorder>SB_Second</zorder>
+    <zorder>SB_SecondRange</zorder>
+    <zorder>Label_PlusMinus</zorder>
+    <zorder>Label_SecondRange</zorder>
    </widget>
    <widget class="QTextEdit" name="TE_Result">
     <property name="geometry">
      <rect>
-      <x>605</x>
-      <y>50</y>
+      <x>430</x>
+      <y>35</y>
       <width>251</width>
       <height>261</height>
      </rect>
@@ -483,8 +369,8 @@
    <widget class="QPushButton" name="BTN_EXEC">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>315</y>
+      <x>620</x>
+      <y>360</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -496,8 +382,8 @@
    <widget class="QLabel" name="Label_Result">
     <property name="geometry">
      <rect>
-      <x>605</x>
-      <y>30</y>
+      <x>425</x>
+      <y>10</y>
       <width>59</width>
       <height>16</height>
      </rect>

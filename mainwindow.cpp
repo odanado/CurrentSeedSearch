@@ -61,38 +61,54 @@ void MainWindow::on_BTN_EXEC_clicked()
 }
 
 void MainWindow::loadDateTime() {
+    int secondRange;
     bool ok;
-    PokeRNG::u32 s,t;
+    PokeRNG::DateTime dateTime,beginDateTime,endDateTime;
+    dateTime.set_year(ui->SB_Year->text().toInt(&ok));
+    dateTime.set_month(ui->SB_Month->text().toInt(&ok));
+    dateTime.set_day(ui->SB_Day->text().toInt(&ok));
+    dateTime.set_hour(ui->SB_Hour->text().toInt(&ok));
+    dateTime.set_minute(ui->SB_Minute->text().toInt(&ok));
+    dateTime.set_second(ui->SB_Second->text().toInt(&ok));
 
-    s=ui->SB_FirstYear->text().toInt(&ok);
-    t=ui->SB_LastYear->text().toInt(&ok);
-    range.set_year(s,t);
+    beginDateTime.set_year(0);
+    beginDateTime.set_month(1);
+    beginDateTime.set_day(1);
+    beginDateTime.set_hour(0);
+    beginDateTime.set_minute(0);
+    beginDateTime.set_second(0);
 
+    endDateTime.set_year(99);
+    endDateTime.set_month(12);
+    endDateTime.set_day(31);
+    endDateTime.set_hour(23);
+    endDateTime.set_minute(59);
+    endDateTime.set_second(59);
 
-    s=ui->SB_FirstMonth->text().toInt(&ok);
-    t=ui->SB_LastMonth->text().toInt(&ok);
-    range.set_month(s,t);
+    PokeRNG::DateTimeIterator beginIt(beginDateTime,beginDateTime,endDateTime);
+    PokeRNG::DateTimeIterator endIt(endDateTime,beginDateTime,endDateTime);
+    PokeRNG::DateTimeIterator it(dateTime,beginDateTime,endDateTime);
+    PokeRNG::DateTimeIterator tmp(dateTime,beginDateTime,endDateTime);
 
+    secondRange = ui->SB_SecondRange->text().toInt(&ok);
 
-    s=ui->SB_FirstDay->text().toInt(&ok);
-    t=ui->SB_LastDay->text().toInt(&ok);
-    range.set_day(s,t);
+    for(int i=0;i<secondRange&&it!=beginIt;i++) {
+        --it;
+    }
+    beginIt=it;
+    it=tmp;
 
+    for(int i=0;i<secondRange&&it!=endIt;i++) {
+        ++it;
+    }
+    endIt=it;
 
-    s=ui->SB_FirstHour->text().toInt(&ok);
-    t=ui->SB_LastHour->text().toInt(&ok);
-    range.set_hour(s,t);
-
-
-    s=ui->SB_FirstMinute->text().toInt(&ok);
-    t=ui->SB_LastMinute->text().toInt(&ok);
-    range.set_minute(s,t);
-
-
-    s=ui->SB_FirstSecond->text().toInt(&ok);
-    t=ui->SB_LastSecond->text().toInt(&ok);
-    range.set_second(s,t);
-
+    range.set_year((*beginIt).get_year(),(*endIt).get_year());
+    range.set_month((*beginIt).get_month(),(*endIt).get_month());
+    range.set_day((*beginIt).get_day(),(*endIt).get_day());
+    range.set_hour((*beginIt).get_hour(),(*endIt).get_hour());
+    range.set_minute((*beginIt).get_minute(),(*endIt).get_minute());
+    range.set_second((*beginIt).get_second(),(*endIt).get_second());
 }
 
 void MainWindow::calcIVs() {
