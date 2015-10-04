@@ -20,7 +20,7 @@
       <x>5</x>
       <y>120</y>
       <width>456</width>
-      <height>271</height>
+      <height>221</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -34,7 +34,7 @@
       <property name="geometry">
        <rect>
         <x>5</x>
-        <y>205</y>
+        <y>150</y>
         <width>291</width>
         <height>26</height>
        </rect>
@@ -436,8 +436,8 @@
    <widget class="QPushButton" name="BTN_EXEC">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>360</y>
+      <x>645</x>
+      <y>380</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -457,6 +457,19 @@
     </property>
     <property name="text">
      <string>結果</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BTN_ParameterSetting">
+    <property name="geometry">
+     <rect>
+      <x>505</x>
+      <y>380</y>
+      <width>115</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>パラメータ設定</string>
     </property>
    </widget>
   </widget>

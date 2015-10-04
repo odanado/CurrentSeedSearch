@@ -256,3 +256,10 @@ void MainWindow::on_CB_NatureName_currentIndexChanged(int index)
     updateStats();
 }
 
+
+void MainWindow::on_BTN_ParameterSetting_clicked()
+{
+    ParameterSettingDialog *dialog = new ParameterSettingDialog(this);
+    dialog->setParameter(param);
+    dialog->show();
+}

@@ -6,6 +6,8 @@
 #include <QString>
 #include <QList>
 
+#include "parametersettingdialog.h"
+
 #include <PokeRNG/PokeRNG.hpp>
 #include <PokeData/PokeData.hpp>
 #include "sss4config.h"
@@ -40,6 +42,8 @@ private slots:
     void on_CB_NatureName_currentIndexChanged(int index);
 
     void on_CB_PokemonName_currentTextChanged(const QString &arg1);
+
+    void on_BTN_ParameterSetting_clicked();
 
 private:
     Ui::MainWindow *ui;
