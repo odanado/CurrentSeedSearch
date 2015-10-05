@@ -1,4 +1,5 @@
 #include "sss4config.h"
+#include <QDebug>
 
 SSS4Config::SSS4Config()
 {
@@ -49,7 +50,7 @@ bool SSS4Config::parse() {
         nazoValues.append(nazo+0x148);
 
     }
-    else if(configLines.count() == 9) {
+    else if(configLines.count() == 9 || configLines.count() == 10 || configLines.count() == 14) {
         // 新しいバージョン
         vcount = configLines.at(0).toInt(&ok,16);
         if(!ok) return false;
@@ -72,7 +73,81 @@ bool SSS4Config::parse() {
             if(!ok) return false;
         }
 
-        // TODO 最後の一行でnazo値の値を分岐する
+        int nazoCond = configLines.at(7).toInt(&ok);
+
+
+        if(configLines.count() == 9) {
+            if(nazoCond == 0) {
+                // B2
+                nazoValues.append(PokeRNG::ROMType::B2Ja::nazo1);
+                nazoValues.append(PokeRNG::ROMType::B2Ja::nazo2);
+                nazoValues.append(PokeRNG::ROMType::B2Ja::nazo3);
+                nazoValues.append(PokeRNG::ROMType::B2Ja::nazo4);
+                nazoValues.append(PokeRNG::ROMType::B2Ja::nazo5);
+
+            }
+            else if(nazoCond == 1) {
+                // W2
+                nazoValues.append(PokeRNG::ROMType::W2Ja::nazo1);
+                nazoValues.append(PokeRNG::ROMType::W2Ja::nazo2);
+                nazoValues.append(PokeRNG::ROMType::W2Ja::nazo3);
+                nazoValues.append(PokeRNG::ROMType::W2Ja::nazo4);
+                nazoValues.append(PokeRNG::ROMType::W2Ja::nazo5);
+            }
+            else if(nazoCond == 3) {
+                // B1
+                nazoValues.append(PokeRNG::ROMType::B1Ja::nazo1);
+                nazoValues.append(PokeRNG::ROMType::B1Ja::nazo2);
+                nazoValues.append(PokeRNG::ROMType::B1Ja::nazo3);
+                nazoValues.append(PokeRNG::ROMType::B1Ja::nazo4);
+                nazoValues.append(PokeRNG::ROMType::B1Ja::nazo5);
+            }
+            else if(nazoCond == 4) {
+                // W1
+                nazoValues.append(PokeRNG::ROMType::W1Ja::nazo1);
+                nazoValues.append(PokeRNG::ROMType::W1Ja::nazo2);
+                nazoValues.append(PokeRNG::ROMType::W1Ja::nazo3);
+                nazoValues.append(PokeRNG::ROMType::W1Ja::nazo4);
+                nazoValues.append(PokeRNG::ROMType::W1Ja::nazo5);
+            }
+            else {
+                return false;
+            }
+        }
+        if(configLines.count() == 10) {
+            if(nazoCond == 5) {
+                // 1つ指定
+                PokeRNG::u32 nazo = configLines.at(8).toInt(&ok, 16);
+                if(!ok) return false;
+                nazoValues.append(nazo);
+                nazoValues.append(nazo+0xfc);
+                nazoValues.append(nazo+0xfc);
+                nazoValues.append(nazo+0x148);
+                nazoValues.append(nazo+0x148);
+            }
+            else {
+                return false;
+            }
+        }
+
+        if(configLines.count() == 14) {
+            if(nazoCond == 2) {
+                // 5つ指定
+                nazoValues.append(configLines.at(8).toInt(&ok, 16));
+                if(!ok) return false;
+                nazoValues.append(configLines.at(9).toInt(&ok, 16));
+                if(!ok) return false;
+                nazoValues.append(configLines.at(10).toInt(&ok, 16));
+                if(!ok) return false;
+                nazoValues.append(configLines.at(11).toInt(&ok, 16));
+                if(!ok) return false;
+                nazoValues.append(configLines.at(12).toInt(&ok, 16));
+                if(!ok) return false;
+            }
+            else {
+                return false;
+            }
+        }
     }
     else {
         // それ以外
