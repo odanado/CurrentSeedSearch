@@ -9,12 +9,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    isSetParam = false;
-    SSS4Config sss4Config;
-    if(sss4Config.parse()) {
+    hasSetUpParam = false;
+    SSS4Config sss4Config("config.txt");
+    if(sss4Config.exist() && sss4Config.parse()) {
         param = sss4Config.getParameter();
-        isSetParam = true;
+        hasSetUpParam = true;
     }
+    else {
+        ParameterSettingDialog *dialog = new ParameterSettingDialog(this);
+        dialog->setParameter(param);
+        dialog->setHasSetUpParam(false);
+        dialog->show();
+        hasSetUpParam = true;
+    }
+
 
     initCB_PokemonName();
     initCB_NatureName();
@@ -41,7 +49,7 @@ void MainWindow::on_BTN_EXEC_clicked()
     loadDateTime();
 
 
-    if(isSetParam) {
+    if(hasSetUpParam) {
         QString ivRange;
         ivRange = "個体値の範囲\n";
         for(int i=0;i<6;i++) {
@@ -261,5 +269,10 @@ void MainWindow::on_BTN_ParameterSetting_clicked()
 {
     ParameterSettingDialog *dialog = new ParameterSettingDialog(this);
     dialog->setParameter(param);
+    dialog->setHasSetUpParam(hasSetUpParam);
     dialog->show();
+}
+
+void MainWindow::setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param) {
+    this->param = param;
 }

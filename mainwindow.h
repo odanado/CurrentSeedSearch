@@ -25,6 +25,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param);
+
 private slots:
     void on_BTN_EXEC_clicked();
 
@@ -48,7 +50,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
-    bool isSetParam;
+    bool hasSetUpParam;
 
     void initCB_PokemonName();
     void initCB_NatureName();

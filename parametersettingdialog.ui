@@ -60,7 +60,7 @@
        </size>
       </property>
       <property name="readOnly">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -339,7 +339,39 @@
     </item>
    </layout>
   </widget>
+  <widget class="QPushButton" name="BTN_OK">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>160</y>
+     <width>86</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>LE_Nazo1</tabstop>
+  <tabstop>LE_Nazo2</tabstop>
+  <tabstop>LE_Nazo3</tabstop>
+  <tabstop>LE_Nazo4</tabstop>
+  <tabstop>LE_Nazo5</tabstop>
+  <tabstop>LE_MacAddr1</tabstop>
+  <tabstop>LE_MacAddr2</tabstop>
+  <tabstop>LE_MacAddr3</tabstop>
+  <tabstop>LE_MacAddr4</tabstop>
+  <tabstop>LE_MacAddr5</tabstop>
+  <tabstop>LE_MacAddr6</tabstop>
+  <tabstop>LE_FirstTimer0</tabstop>
+  <tabstop>LE_LastTimer0</tabstop>
+  <tabstop>LE_VCount</tabstop>
+  <tabstop>LE_GxStat</tabstop>
+  <tabstop>LE_Frame</tabstop>
+  <tabstop>BTN_OK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

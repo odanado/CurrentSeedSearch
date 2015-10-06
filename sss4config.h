@@ -1,7 +1,7 @@
 #ifndef SSS4CONFIG_H
 #define SSS4CONFIG_H
 
-#include <PokeRNG.hpp>
+#include <PokeRNG/PokeRNG.hpp>
 
 #include <QFile>
 #include <QTextStream>
