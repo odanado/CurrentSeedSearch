@@ -1,18 +1,25 @@
 #include "sss4config.h"
 #include <QDebug>
 
-SSS4Config::SSS4Config()
-{
+SSS4Config::SSS4Config(const QString &fileName) :
+    fileName(fileName) {
 
 }
 
+bool SSS4Config::exist() {
+    QFile file(fileName);
+    return file.open(QIODevice::ReadOnly | QIODevice::Text);
+}
+
 bool SSS4Config::parse() {
-    QFile file("config.txt");
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+    if(!exist()) {
         // ファイルがない
         return false;
     }
 
+    QFile file(fileName);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&file);
     QStringList configLines = in.readAll().split('\n');
     QList<PokeRNG::u32> macAddrs;
@@ -168,6 +175,85 @@ bool SSS4Config::parse() {
     param.set_nazo5(nazoValues[4]);
 
     return true;
+}
+
+void SSS4Config::save(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param, bool isNewVersion) {
+
+    QFile file(fileName);
+    file.open(QFile::WriteOnly|QIODevice::Text);
+    QTextStream out(&file);
+
+    if(isNewVersion) {
+        out<<QString::number(param.get_vcount(),16)<<endl;
+        out<<QString::number(param.get_timer0_min(),16)<<endl;
+        out<<QString::number(param.get_timer0_max(),16)<<endl;
+        out<<"1"<<endl;
+        out<<QString::number(param.get_gxstat(),16)<<endl;
+        out<<QString::number(param.get_frame(),16)<<endl;
+        QString macAddr;
+        macAddr.sprintf("%02X-%02X-%02X-%02X-%02X-%02X",
+                        param.get_mac_addr1(),param.get_mac_addr2(),param.get_mac_addr3(),
+                        param.get_mac_addr4(),param.get_mac_addr5(),param.get_mac_addr6());
+        out<<macAddr<<endl;
+
+        if(param.get_nazo1()+0x148 == param.get_nazo5()) {
+            if(param.get_nazo1() == PokeRNG::ROMType::B1Ja::nazo1) {
+                out<<"3"<<endl;
+            }
+            else if(param.get_nazo1() == PokeRNG::ROMType::W1Ja::nazo1) {
+                out<<"4"<<endl;
+            }
+            else {
+                out<<"5"<<endl;
+                QString nazo;
+                nazo.sprintf("%08X",param.get_nazo1());
+                out<<nazo<<endl;
+            }
+        }
+        else {
+            if(param.get_nazo1() == PokeRNG::ROMType::B2Ja::nazo1 && param.get_nazo2() == PokeRNG::ROMType::B2Ja::nazo2 &&
+                    param.get_nazo3() == PokeRNG::ROMType::B2Ja::nazo3 && param.get_nazo4() == PokeRNG::ROMType::B2Ja::nazo4 &&
+                    param.get_nazo5() == PokeRNG::ROMType::B2Ja::nazo5) {
+                out<<"0"<<endl;
+            }
+            else if(param.get_nazo1() == PokeRNG::ROMType::W2Ja::nazo1 && param.get_nazo2() == PokeRNG::ROMType::W2Ja::nazo2 &&
+                    param.get_nazo3() == PokeRNG::ROMType::W2Ja::nazo3 && param.get_nazo4() == PokeRNG::ROMType::W2Ja::nazo4 &&
+                    param.get_nazo5() == PokeRNG::ROMType::W2Ja::nazo5){
+                out<<"1"<<endl;
+            }
+            else {
+                out<<"2"<<endl;
+                QString nazo1,nazo2,nazo3,nazo4,nazo5;
+                nazo1.sprintf("%08X",param.get_nazo1());
+                nazo2.sprintf("%08X",param.get_nazo2());
+                nazo3.sprintf("%08X",param.get_nazo3());
+                nazo4.sprintf("%08X",param.get_nazo4());
+                nazo5.sprintf("%08X",param.get_nazo5());
+                out<<nazo1<<endl;
+                out<<nazo2<<endl;
+                out<<nazo3<<endl;
+                out<<nazo4<<endl;
+                out<<nazo5<<endl;
+            }
+        }
+    }
+    else {
+        out<<QString::number(param.get_vcount(),16)<<endl;
+        // 要出典
+        out<<QString::number((param.get_timer0_min()+param.get_timer0_max())/2,16)<<endl;
+        out<<QString::number(param.get_gxstat(),16)<<endl;
+        out<<QString::number(param.get_frame(),16)<<endl;
+        QString macAddr;
+        macAddr.sprintf("%02X-%02X-%02X-%02X-%02X-%02X",
+                        param.get_mac_addr1(),param.get_mac_addr2(),param.get_mac_addr3(),
+                        param.get_mac_addr4(),param.get_mac_addr5(),param.get_mac_addr6());
+        out<<macAddr<<endl;
+        QString nazo;
+        nazo.sprintf("%08X",param.get_nazo1());
+        out<<nazo<<endl;
+    }
+
+
 }
 
 PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> SSS4Config::getParameter() {
