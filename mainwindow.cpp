@@ -199,11 +199,11 @@ void MainWindow::updateStats() {
 
     ui->SB_StatsH->setValue(calcHP(baseStats.getHP(),31,0,level));
 
-    ui->SB_StatsA->setValue(calcStats(baseStats.getAttack(),31,9,level,nature.getAttackMod()));
-    ui->SB_StatsB->setValue(calcStats(baseStats.getDefense(),31,9,level,nature.getDefenseMod()));
-    ui->SB_StatsC->setValue(calcStats(baseStats.getSpAtk(),31,9,level,nature.getSpAtkMod()));
-    ui->SB_StatsD->setValue(calcStats(baseStats.getSpDef(),31,9,level,nature.getSpDefMod()));
-    ui->SB_StatsS->setValue(calcStats(baseStats.getSpeed(),31,9,level,nature.getSpeedMod()));
+    ui->SB_StatsA->setValue(calcStats(baseStats.getAttack(),31,0,level,nature.getAttackMod()));
+    ui->SB_StatsB->setValue(calcStats(baseStats.getDefense(),31,0,level,nature.getDefenseMod()));
+    ui->SB_StatsC->setValue(calcStats(baseStats.getSpAtk(),31,0,level,nature.getSpAtkMod()));
+    ui->SB_StatsD->setValue(calcStats(baseStats.getSpDef(),31,0,level,nature.getSpDefMod()));
+    ui->SB_StatsS->setValue(calcStats(baseStats.getSpeed(),31,0,level,nature.getSpeedMod()));
 
 
 
