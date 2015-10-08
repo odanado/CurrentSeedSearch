@@ -34,7 +34,6 @@ private slots:
 
     void on_CB_PokemonName_editTextChanged(const QString &arg1);
 
-    void onDateChanged(const QString&);
     void onComplated(const QString&);
 
     void on_SB_Level_valueChanged(int arg1);

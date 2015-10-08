@@ -39,7 +39,6 @@ private:
 
 
 signals:
-    void notifyDateChanged(const QString&);
     void notifyComplated(const QString&);
 
 };

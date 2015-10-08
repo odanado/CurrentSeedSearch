@@ -226,10 +226,6 @@ int MainWindow::calcHP(int baseStats, int iv, int ev, int level) {
     return stats;
 }
 
-void MainWindow::onDateChanged(const QString &title) {
-    setWindowTitle(title);
-}
-
 void MainWindow::onComplated(const QString &result) {
     ui->TE_Result->append(result);
 }

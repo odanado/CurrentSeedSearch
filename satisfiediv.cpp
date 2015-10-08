@@ -3,13 +3,12 @@
 #define CHECK_IV(i) (lowerIVs[i]<=IVs[i]&&IVs[i]<=upperIVs[i])
 
 void SatisfiedIV::run() {
-    QString title,result;
+    QString result;
     QList<SatisfiedIVResult> results;
     for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
         param.set_timer0(timer0);
         for(const auto &dateTime : dateTimeRange) {
-            title.sprintf("%2d/%2d/%2d",dateTime.get_year(),dateTime.get_month(),dateTime.get_day());
-            emit notifyDateChanged(title);
+
             param.set_date_time(dateTime);
 
             calc(&results);
@@ -32,7 +31,7 @@ void SatisfiedIV::run() {
         QString t;
 
         auto dateTime=ret.getDateTime();
-        t += QString::asprintf("%2d年%2d月%2d日 %2d時%2d分%2d秒",
+        t += QString::asprintf("%2d年%2d月%2d日 %2d時%2d分%2d秒\n",
                                dateTime.get_year(),dateTime.get_month(),dateTime.get_day(),
                                dateTime.get_hour(),dateTime.get_minute(),dateTime.get_second());
         t += QString::asprintf("timer0: %x\n",ret.getTimer0());
