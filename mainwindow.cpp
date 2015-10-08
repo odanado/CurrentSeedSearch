@@ -122,6 +122,10 @@ void MainWindow::loadDateTime() {
 }
 
 void MainWindow::calcIVs() {
+    for(int i=0;i<6;i++) {
+        lowerIVs[i]=31;
+        upperIVs[i]=0;
+    }
     auto nature = PokeData::natures[PokeData::natureIndexes.at(ui->CB_NatureName->currentText().toStdString())];
     auto baseStatsTmp = PokeData::pokemons[PokeData::pokemonIndexes.at(ui->CB_PokemonName->currentText().toStdString())].getBaseStats();
 
