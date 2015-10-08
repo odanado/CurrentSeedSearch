@@ -287,7 +287,20 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="SB_Year"/>
+       <widget class="QSpinBox" name="SB_Year">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="Label_Year">
@@ -298,6 +311,18 @@
       </item>
       <item row="0" column="3">
        <widget class="QSpinBox" name="SB_Month">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <number>1</number>
         </property>
@@ -315,6 +340,18 @@
       </item>
       <item row="0" column="5">
        <widget class="QSpinBox" name="SB_Day">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="minimum">
          <number>1</number>
         </property>
@@ -344,6 +381,18 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QSpinBox" name="SB_Hour">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="maximum">
          <number>23</number>
         </property>
@@ -358,6 +407,18 @@
       </item>
       <item row="0" column="2">
        <widget class="QSpinBox" name="SB_Minute">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="maximum">
          <number>59</number>
         </property>
@@ -372,6 +433,18 @@
       </item>
       <item row="0" column="4">
        <widget class="QSpinBox" name="SB_Second">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="maximum">
          <number>59</number>
         </property>
@@ -405,6 +478,18 @@
       </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="SB_SecondRange">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="maximum">
          <number>3</number>
         </property>
@@ -461,7 +546,7 @@
     <property name="title">
      <string>キー入力</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>5</x>
@@ -705,7 +790,7 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -727,14 +812,12 @@
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
    <zorder>tabWidget</zorder>
    <zorder>GB_DateTime</zorder>
-   <zorder>TE_Result</zorder>
    <zorder>BTN_EXEC</zorder>
-   <zorder>Label_Result</zorder>
    <zorder>BTN_ParameterSetting</zorder>
    <zorder>groupBox</zorder>
-   <zorder>TE_Result</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

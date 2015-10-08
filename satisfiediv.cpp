@@ -1,5 +1,4 @@
 #include "satisfiediv.h"
-#include <QDebug>
 
 #define CHECK_IV(i) (lowerIVs[i]<=IVs[i]&&IVs[i]<=upperIVs[i])
 
@@ -56,7 +55,6 @@ void SatisfiedIV::run() {
         t += QString::asprintf("timer0: %x\n",ret.getTimer0());
 
         if(keyInputs.size() > 1) {
-            auto a=param.get_key();
             t += "キー入力: " + keyDecode(ret.getKey())+"\n";
         }
         t += QString::asprintf("seed1: %016llX\n",ret.getSeed1());
@@ -80,8 +78,6 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     QList<PokeRNG::u32> satisfiedFrames;
 
     auto seed1 = lcg.next(calc5GenSeed(param));
-    if(param.get_timer0()==0xc68)
-    qDebug() <<QString::number(seed1,16)<<QString::number(param.get_key(),16);
 
     mt.seed(seed1>>32);
 
@@ -101,7 +97,6 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     }
 
     if(satisfiedFrames.size()) {
-        auto a=param.get_key();
         results->append(SatisfiedIVResult(seed1,param.get_date_time(),satisfiedFrames,param.get_timer0(),param.get_key()));
     }
 }
