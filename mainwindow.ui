@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>733</width>
-    <height>522</height>
+    <width>673</width>
+    <height>461</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>205</y>
-      <width>456</width>
+      <y>195</y>
+      <width>381</width>
       <height>221</height>
      </rect>
     </property>
@@ -261,7 +261,7 @@
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>10</y>
+      <y>5</y>
       <width>386</width>
       <height>101</height>
      </rect>
@@ -423,22 +423,12 @@
     <zorder>layoutWidget</zorder>
     <zorder>layoutWidget_4</zorder>
    </widget>
-   <widget class="QTextEdit" name="TE_Result">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>35</y>
-      <width>251</width>
-      <height>261</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="BTN_EXEC">
     <property name="geometry">
      <rect>
-      <x>645</x>
-      <y>380</y>
-      <width>71</width>
+      <x>577</x>
+      <y>390</y>
+      <width>81</width>
       <height>32</height>
      </rect>
     </property>
@@ -446,25 +436,12 @@
      <string>実行</string>
     </property>
    </widget>
-   <widget class="QLabel" name="Label_Result">
-    <property name="geometry">
-     <rect>
-      <x>475</x>
-      <y>15</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>結果</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="BTN_ParameterSetting">
     <property name="geometry">
      <rect>
-      <x>505</x>
-      <y>380</y>
-      <width>115</width>
+      <x>405</x>
+      <y>390</y>
+      <width>133</width>
       <height>32</height>
      </rect>
     </property>
@@ -476,8 +453,8 @@
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>115</y>
-      <width>291</width>
+      <y>105</y>
+      <width>386</width>
       <height>81</height>
      </rect>
     </property>
@@ -728,6 +705,36 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>10</y>
+      <width>258</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_13">
+     <item row="0" column="0">
+      <widget class="QLabel" name="Label_Result">
+       <property name="text">
+        <string>結果</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QTextEdit" name="TE_Result"/>
+     </item>
+    </layout>
+   </widget>
+   <zorder>tabWidget</zorder>
+   <zorder>GB_DateTime</zorder>
+   <zorder>TE_Result</zorder>
+   <zorder>BTN_EXEC</zorder>
+   <zorder>Label_Result</zorder>
+   <zorder>BTN_ParameterSetting</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>TE_Result</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
