@@ -8,6 +8,7 @@ class SatisfiedIVResult
 {
 public:
     SatisfiedIVResult();
+    SatisfiedIVResult(PokeRNG::u64 seed1, const PokeRNG::DateTime &dateTime,const QList<PokeRNG::u32> &satisfiedFrames, PokeRNG::u32 timer0, PokeRNG::u32 key);
     void setSeed1(PokeRNG::u64 seed1);
     void setDateTime(const PokeRNG::DateTime &dateTime);
     void setSatisfiedFrames(const QList<PokeRNG::u32> &satisfiedFrames);

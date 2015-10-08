@@ -5,6 +5,11 @@ SatisfiedIVResult::SatisfiedIVResult()
 
 }
 
+SatisfiedIVResult::SatisfiedIVResult(PokeRNG::u64 seed1, const PokeRNG::DateTime &dateTime, const QList<PokeRNG::u32> &satisfiedFrames, PokeRNG::u32 timer0, PokeRNG::u32 key) :
+seed1(seed1), dateTime(dateTime), satisfiedFrames(satisfiedFrames), timer0(timer0), key(key){
+
+}
+
 void SatisfiedIVResult::setSeed1(PokeRNG::u64 seed1) {
     this->seed1 = seed1;
 }

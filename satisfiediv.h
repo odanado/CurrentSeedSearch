@@ -6,6 +6,8 @@
 #include <QString>
 #include <PokeRNG/PokeRNG.hpp>
 
+#include "satisfiedivresult.h"
+
 class SatisfiedIV : public QThread
 {
     Q_OBJECT
@@ -33,7 +35,7 @@ private:
     PokeRNG::LCG5Gen lcg;
     PokeRNG::MT mt;
 
-    QString calc(const PokeRNG::DateTime &dateTime, const PokeRNG::u32 timer0);
+    void calc(QList<SatisfiedIVResult> *results);
 
 
 signals:

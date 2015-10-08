@@ -4,29 +4,57 @@
 
 void SatisfiedIV::run() {
     QString title,result;
+    QList<SatisfiedIVResult> results;
     for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
         param.set_timer0(timer0);
         for(const auto &dateTime : dateTimeRange) {
             title.sprintf("%2d/%2d/%2d",dateTime.get_year(),dateTime.get_month(),dateTime.get_day());
             emit notifyDateChanged(title);
+            param.set_date_time(dateTime);
 
-            result+=calc(dateTime, timer0);
+            calc(&results);
         }
     }
 
+    param.set_date_time(*dateTimeRange.end());
     for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
         param.set_timer0(timer0);
-        result += calc(*dateTimeRange.end(),timer0);
+        calc(&results);
+    }
+
+    int cnt=0;
+    for(const auto &ret : results) {
+        cnt+=ret.getSatisfiedFrames().size();
+    }
+    result.sprintf("候補件数%d \n",cnt);
+
+    for(const auto &ret : results) {
+        QString t;
+
+        auto dateTime=ret.getDateTime();
+        t += QString::asprintf("%2d年%2d月%2d日 %2d時%2d分%2d秒",
+                               dateTime.get_year(),dateTime.get_month(),dateTime.get_day(),
+                               dateTime.get_hour(),dateTime.get_minute(),dateTime.get_second());
+        t += QString::asprintf("timer0: %x\n",ret.getTimer0());
+        t += QString::asprintf("seed1: %016llX\n",ret.getSeed1());
+        t += "消費数: ";
+        for(int i=0;i<ret.getSatisfiedFrames().size();++i) {
+            t += QString::number(ret.getSatisfiedFrames()[i]);
+            if(i+1 != ret.getSatisfiedFrames().size()) {
+                t += ", ";
+            }
+        }
+
+        result += t+"\n";
     }
 
     emit notifyComplated(result);
 }
 
-QString SatisfiedIV::calc(const PokeRNG::DateTime &dateTime, const PokeRNG::u32 timer0) {
-    QString result="消費数: ";
+void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     PokeRNG::u32 IVs[6]={};
     PokeRNG::u64 cur;
-    param.set_date_time(dateTime);
+    QList<PokeRNG::u32> satisfiedFrames;
 
     auto seed1 = lcg.next(calc5GenSeed(param));
     mt.seed(seed1>>32);
@@ -36,7 +64,7 @@ QString SatisfiedIV::calc(const PokeRNG::DateTime &dateTime, const PokeRNG::u32 
 
     for(cur=firstFrame;cur<=lastFrame;++cur) {
         if(CHECK_IV(0) && CHECK_IV(1) && CHECK_IV(2) && CHECK_IV(3) && CHECK_IV(4) && CHECK_IV(5)) {
-            result+=QString::number(cur)+", ";
+            satisfiedFrames.append(cur);
         }
         IVs[0]=IVs[1];
         IVs[1]=IVs[2];
@@ -46,20 +74,9 @@ QString SatisfiedIV::calc(const PokeRNG::DateTime &dateTime, const PokeRNG::u32 
         IVs[5]=mt()>>27;
     }
 
-    if(result != "消費数: ") {
-        QString subject;
-        subject.sprintf("seed1 = %llX\n%d年%d月%d日 %d時%d分%d秒 timer0 %X\n",seed1,
-                        dateTime.get_year(),dateTime.get_month(),dateTime.get_day(),
-                        dateTime.get_hour(),dateTime.get_minute(),dateTime.get_second(),
-                        timer0);
-
-        result = subject+result;
+    if(satisfiedFrames.size()) {
+        results->append(SatisfiedIVResult(seed1,param.get_date_time(),satisfiedFrames,param.get_timer0(),param.get_key()));
     }
-    else {
-        result = "";
-    }
-
-    return result;
 }
 
 void SatisfiedIV::setDateTimeRange(const PokeRNG::DateTimeRange &range) {
