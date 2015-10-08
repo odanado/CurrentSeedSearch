@@ -6,6 +6,9 @@
 #include <QString>
 #include <QList>
 
+#include <utility>
+#include <algorithm>
+
 #include "parametersettingdialog.h"
 
 #include <PokeRNG/PokeRNG.hpp>
@@ -59,9 +62,11 @@ private:
     int calcStats(int baseStats,int iv,int ev,int level,int mod);
     int calcHP(int baseStats,int iv,int ev,int level);
     void calcIVs();
+    void initKeyInputs();
     void loadDateTime();
     QList<PokeRNG::u32> lowerIVs,upperIVs;
     PokeRNG::DateTimeRange range;
+    QList<PokeRNG::u32> keyInputs;
 
     SatisfiedIV satisfiedIV;
 

@@ -33,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
         upperIVs.append(0);
     }
 
-    connect(&satisfiedIV, SIGNAL(notifyDateChanged(const QString&)), this, SLOT(onDateChanged(const QString&)));
     connect(&satisfiedIV, SIGNAL(notifyComplated(const QString&)), this, SLOT(onComplated(const QString&)));
 
 }
@@ -47,6 +46,7 @@ void MainWindow::on_BTN_EXEC_clicked()
 {
     calcIVs();
     loadDateTime();
+    initKeyInputs();
 
 
     if(hasSetUpParam) {
@@ -66,6 +66,7 @@ void MainWindow::on_BTN_EXEC_clicked()
         satisfiedIV.setDateTimeRange(range);
         satisfiedIV.setFirstFrame(ui->SB_FirstFrame->text().toInt(&ok));
         satisfiedIV.setLastFrame(ui->SB_LastFrame->text().toInt(&ok));
+        satisfiedIV.setKeyInputs(keyInputs);
         satisfiedIV.start();
     }
 }
@@ -275,4 +276,30 @@ void MainWindow::on_BTN_ParameterSetting_clicked()
 
 void MainWindow::setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param) {
     this->param = param;
+}
+
+void MainWindow::initKeyInputs() {
+    keyInputs.clear();
+    QList<std::pair<int,int>> keySet;
+    keySet.append(std::make_pair(ui->CB_KeyInputA->checkState() == Qt::Checked,0));
+    keySet.append(std::make_pair(ui->CB_KeyInputB->checkState() == Qt::Checked,1));
+    keySet.append(std::make_pair(ui->CB_KeyInputSe->checkState() == Qt::Checked,2));
+    keySet.append(std::make_pair(ui->CB_KeyInputSt->checkState() == Qt::Checked,3));
+    keySet.append(std::make_pair(ui->CB_KeyInputRight->checkState() == Qt::Checked,4));
+    keySet.append(std::make_pair(ui->CB_KeyInputLeft->checkState() == Qt::Checked,5));
+    keySet.append(std::make_pair(ui->CB_KeyInputUp->checkState() == Qt::Checked,6));
+    keySet.append(std::make_pair(ui->CB_KeyInputDown->checkState() == Qt::Checked,7));
+    keySet.append(std::make_pair(ui->CB_KeyInputR->checkState() == Qt::Checked,8));
+    keySet.append(std::make_pair(ui->CB_KeyInputL->checkState() == Qt::Checked,9));
+    keySet.append(std::make_pair(ui->CB_KeyInputX->checkState() == Qt::Checked,10));
+    keySet.append(std::make_pair(ui->CB_KeyInputY->checkState() == Qt::Checked,11));
+
+    keyInputs.reserve(4096);
+
+    for(int bit=0;bit<4096;++bit) {
+        if(std::all_of(keySet.begin(),keySet.end(),
+                       [bit](std::pair<int,int> elem) { return (elem.first || !(bit>>elem.second&1));})) {
+            keyInputs.append(bit ^ 0x2fff);
+        }
+    }
 }

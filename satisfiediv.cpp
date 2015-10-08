@@ -1,24 +1,43 @@
 #include "satisfiediv.h"
+#include <QDebug>
 
 #define CHECK_IV(i) (lowerIVs[i]<=IVs[i]&&IVs[i]<=upperIVs[i])
+
+SatisfiedIV::SatisfiedIV() :
+    keyTexts({"A","B","Se","St","右","左","上","下","R","L","X","Y"}) {
+}
+
+QString SatisfiedIV::keyDecode(PokeRNG::u32 keyInput) {
+    keyInput ^= 0x2fff;
+    QString ret;
+    for(int i=0;i<keyTexts.size();i++) {
+        if(keyInput>>i&1) ret += keyTexts[i];
+    }
+
+    return ret;
+}
 
 void SatisfiedIV::run() {
     QString result;
     QList<SatisfiedIVResult> results;
-    for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
-        param.set_timer0(timer0);
-        for(const auto &dateTime : dateTimeRange) {
-
-            param.set_date_time(dateTime);
-
-            calc(&results);
+    for(const auto &keyInput : keyInputs) {
+        param.set_key(keyInput);
+        for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
+            param.set_timer0(timer0);
+            for(const auto &dateTime : dateTimeRange) {
+                param.set_date_time(dateTime);
+                calc(&results);
+            }
         }
     }
 
     param.set_date_time(*dateTimeRange.end());
-    for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
-        param.set_timer0(timer0);
-        calc(&results);
+    for(const auto &keyInput : keyInputs) {
+        param.set_key(keyInput);
+        for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
+            param.set_timer0(timer0);
+            calc(&results);
+        }
     }
 
     int cnt=0;
@@ -35,8 +54,13 @@ void SatisfiedIV::run() {
                                dateTime.get_year(),dateTime.get_month(),dateTime.get_day(),
                                dateTime.get_hour(),dateTime.get_minute(),dateTime.get_second());
         t += QString::asprintf("timer0: %x\n",ret.getTimer0());
+
+        if(keyInputs.size() > 1) {
+            auto a=param.get_key();
+            t += "キー入力: " + keyDecode(ret.getKey())+"\n";
+        }
         t += QString::asprintf("seed1: %016llX\n",ret.getSeed1());
-        t += "消費数: ";
+        t += "個体値乱数列の消費数: ";
         for(int i=0;i<ret.getSatisfiedFrames().size();++i) {
             t += QString::number(ret.getSatisfiedFrames()[i]);
             if(i+1 != ret.getSatisfiedFrames().size()) {
@@ -56,6 +80,9 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     QList<PokeRNG::u32> satisfiedFrames;
 
     auto seed1 = lcg.next(calc5GenSeed(param));
+    if(param.get_timer0()==0xc68)
+    qDebug() <<QString::number(seed1,16)<<QString::number(param.get_key(),16);
+
     mt.seed(seed1>>32);
 
     for(cur=0;cur<firstFrame;++cur) mt();
@@ -74,6 +101,7 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     }
 
     if(satisfiedFrames.size()) {
+        auto a=param.get_key();
         results->append(SatisfiedIVResult(seed1,param.get_date_time(),satisfiedFrames,param.get_timer0(),param.get_key()));
     }
 }
@@ -100,6 +128,10 @@ void SatisfiedIV::setFirstFrame(PokeRNG::u64 firstFrame) {
 
 void SatisfiedIV::setLastFrame(PokeRNG::u64 lastFrame) {
     this->lastFrame = lastFrame;
+}
+
+void SatisfiedIV::setKeyInputs(const QList<PokeRNG::u32> &keyInputs) {
+    this->keyInputs = keyInputs;
 }
 
 

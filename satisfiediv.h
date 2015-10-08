@@ -15,7 +15,7 @@ class SatisfiedIV : public QThread
 protected:
     virtual void run();
 public:
-    SatisfiedIV() = default;
+    SatisfiedIV();
 
     void setDateTimeRange(const PokeRNG::DateTimeRange &range);
     void setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param);
@@ -24,18 +24,22 @@ public:
     void setUpperIVs(const QList<PokeRNG::u32> &upperIVs);
     void setFirstFrame(PokeRNG::u64 firstFrame);
     void setLastFrame(PokeRNG::u64 lastFrame);
+    void setKeyInputs(const QList<PokeRNG::u32> &keyInputs);
 
 private:
     PokeRNG::DateTimeRange dateTimeRange;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
     QList<PokeRNG::u32> lowerIVs,upperIVs;
     PokeRNG::u64 firstFrame,lastFrame;
+    QList<PokeRNG::u32> keyInputs;
 
     PokeRNG::Calc5GenSeed calc5GenSeed;
     PokeRNG::LCG5Gen lcg;
     PokeRNG::MT mt;
 
     void calc(QList<SatisfiedIVResult> *results);
+    QString keyDecode(PokeRNG::u32 keyInput);
+    QStringList keyTexts;
 
 
 signals:
