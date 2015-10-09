@@ -17,7 +17,8 @@ protected:
 public:
     SatisfiedIV();
 
-    void setDateTimeRange(const PokeRNG::DateTimeRange &range);
+    void setFirstDateTimeIt(const PokeRNG::DateTimeIterator &firstDateTimeIt);
+    void setLastDateTimeIt(const PokeRNG::DateTimeIterator &lastDateTimeIt);
     void setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param);
 
     void setLowerIVs(const QList<PokeRNG::u32> &lowerIVs);
@@ -27,7 +28,7 @@ public:
     void setKeyInputs(const QList<PokeRNG::u32> &keyInputs);
 
 private:
-    PokeRNG::DateTimeRange dateTimeRange;
+    PokeRNG::DateTimeIterator firstDateTimeIt,lastDateTimeIt;
     PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> param;
     QList<PokeRNG::u32> lowerIVs,upperIVs;
     PokeRNG::u64 firstFrame,lastFrame;

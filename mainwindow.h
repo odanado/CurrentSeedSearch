@@ -65,7 +65,7 @@ private:
     void initKeyInputs();
     void loadDateTime();
     QList<PokeRNG::u32> lowerIVs,upperIVs;
-    PokeRNG::DateTimeRange range;
+    PokeRNG::DateTimeIterator firstDateTimeIt,lastDateTimeIt;
     QList<PokeRNG::u32> keyInputs;
 
     SatisfiedIV satisfiedIV;

@@ -23,14 +23,14 @@ void SatisfiedIV::run() {
         param.set_key(keyInput);
         for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
             param.set_timer0(timer0);
-            for(const auto &dateTime : dateTimeRange) {
-                param.set_date_time(dateTime);
+            for(auto it=firstDateTimeIt;it!=lastDateTimeIt;++it) {
+                param.set_date_time(*it);
                 calc(&results);
             }
         }
     }
 
-    param.set_date_time(*dateTimeRange.end());
+    param.set_date_time(*lastDateTimeIt);
     for(const auto &keyInput : keyInputs) {
         param.set_key(keyInput);
         for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
@@ -101,8 +101,12 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     }
 }
 
-void SatisfiedIV::setDateTimeRange(const PokeRNG::DateTimeRange &range) {
-    this->dateTimeRange = range;
+void SatisfiedIV::setFirstDateTimeIt(const PokeRNG::DateTimeIterator &firstDateTimeIt) {
+    this->firstDateTimeIt = firstDateTimeIt;
+}
+
+void SatisfiedIV::setLastDateTimeIt(const PokeRNG::DateTimeIterator &lastDateTimeIt) {
+    this->lastDateTimeIt = lastDateTimeIt;
 }
 
 void SatisfiedIV::setParameter(const PokeRNG::Parameters5Gen<PokeRNG::ROMType::None> &param) {

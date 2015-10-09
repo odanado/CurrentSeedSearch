@@ -63,7 +63,8 @@ void MainWindow::on_BTN_EXEC_clicked()
         satisfiedIV.setParameter(param);
         satisfiedIV.setLowerIVs(lowerIVs);
         satisfiedIV.setUpperIVs(upperIVs);
-        satisfiedIV.setDateTimeRange(range);
+        satisfiedIV.setFirstDateTimeIt(firstDateTimeIt);
+        satisfiedIV.setLastDateTimeIt(lastDateTimeIt);
         satisfiedIV.setFirstFrame(ui->SB_FirstFrame->text().toInt(&ok));
         satisfiedIV.setLastFrame(ui->SB_LastFrame->text().toInt(&ok));
         satisfiedIV.setKeyInputs(keyInputs);
@@ -96,30 +97,23 @@ void MainWindow::loadDateTime() {
     endDateTime.set_minute(59);
     endDateTime.set_second(59);
 
-    PokeRNG::DateTimeIterator beginIt(beginDateTime,beginDateTime,endDateTime);
-    PokeRNG::DateTimeIterator endIt(endDateTime,beginDateTime,endDateTime);
+    firstDateTimeIt = PokeRNG::DateTimeIterator(beginDateTime,beginDateTime,endDateTime);
+    lastDateTimeIt = PokeRNG::DateTimeIterator(endDateTime,beginDateTime,endDateTime);
     PokeRNG::DateTimeIterator it(dateTime,beginDateTime,endDateTime);
     PokeRNG::DateTimeIterator tmp(dateTime,beginDateTime,endDateTime);
 
     secondRange = ui->SB_SecondRange->text().toInt(&ok);
 
-    for(int i=0;i<secondRange&&it!=beginIt;i++) {
+    for(int i=0;i<secondRange&&it!=firstDateTimeIt;i++) {
         --it;
     }
-    beginIt=it;
+    firstDateTimeIt=it;
     it=tmp;
 
-    for(int i=0;i<secondRange&&it!=endIt;i++) {
+    for(int i=0;i<secondRange&&it!=lastDateTimeIt;i++) {
         ++it;
     }
-    endIt=it;
-
-    range.set_year((*beginIt).get_year(),(*endIt).get_year());
-    range.set_month((*beginIt).get_month(),(*endIt).get_month());
-    range.set_day((*beginIt).get_day(),(*endIt).get_day());
-    range.set_hour((*beginIt).get_hour(),(*endIt).get_hour());
-    range.set_minute((*beginIt).get_minute(),(*endIt).get_minute());
-    range.set_second((*beginIt).get_second(),(*endIt).get_second());
+    lastDateTimeIt=it;
 }
 
 void MainWindow::calcIVs() {
