@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     connect(&satisfiedIV, SIGNAL(notifyComplated(const QString&)), this, SLOT(onComplated(const QString&)));
+    connect(&satisfiedLCG, SIGNAL(notifyComplated(const QString&)), this, SLOT(onComplated(const QString&)));
 
 }
 
@@ -44,31 +45,50 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BTN_EXEC_clicked()
 {
-    calcIVs();
     loadDateTime();
     initKeyInputs();
 
 
     if(hasSetUpParam) {
-        QString ivRange;
-        ivRange = "個体値の範囲\n";
-        for(int i=0;i<6;i++) {
-            QString t;
-            t.sprintf("%d-%d\n",lowerIVs[i],upperIVs[i]);
-            ivRange += t;
-        }
-
         bool ok;
-        ui->TE_Result->setText(ivRange);
-        satisfiedIV.setParameter(param);
-        satisfiedIV.setLowerIVs(lowerIVs);
-        satisfiedIV.setUpperIVs(upperIVs);
-        satisfiedIV.setFirstDateTimeIt(firstDateTimeIt);
-        satisfiedIV.setLastDateTimeIt(lastDateTimeIt);
-        satisfiedIV.setFirstFrame(ui->SB_FirstFrame->text().toInt(&ok));
-        satisfiedIV.setLastFrame(ui->SB_LastFrame->text().toInt(&ok));
-        satisfiedIV.setKeyInputs(keyInputs);
-        satisfiedIV.start();
+        ui->TE_Result->setText("");
+        if(ui->tabWidget->currentIndex() == 0) {
+            calcIVs();
+            QString ivRange;
+            ivRange = "個体値の範囲\n";
+            for(int i=0;i<6;i++) {
+                QString t;
+                t.sprintf("%d-%d\n",lowerIVs[i],upperIVs[i]);
+                ivRange += t;
+            }
+
+            ui->TE_Result->setText(ivRange);
+            satisfiedIV.setParameter(param);
+            satisfiedIV.setLowerIVs(lowerIVs);
+            satisfiedIV.setUpperIVs(upperIVs);
+            satisfiedIV.setFirstDateTimeIt(firstDateTimeIt);
+            satisfiedIV.setLastDateTimeIt(lastDateTimeIt);
+            satisfiedIV.setFirstFrame(ui->SB_FirstFrame->text().toInt(&ok));
+            satisfiedIV.setLastFrame(ui->SB_LastFrame->text().toInt(&ok));
+            satisfiedIV.setKeyInputs(keyInputs);
+            satisfiedIV.start();
+        }
+        else if(ui->tabWidget->currentIndex() == 1) {
+            QList<PokeRNG::u64> lcgSeq;
+            QString repohari = ui->LE_Repohari->text();
+            for(const auto &val : repohari) {
+                lcgSeq.append(val.digitValue());
+            }
+            satisfiedLCG.setParameter(param);
+            satisfiedLCG.setLCGSequence(lcgSeq);
+            satisfiedLCG.setFirstDateTimeIt(firstDateTimeIt);
+            satisfiedLCG.setLastDateTimeIt(lastDateTimeIt);
+            satisfiedLCG.setFirstFrame(ui->SB_FirstLCGFrame->text().toInt(&ok));
+            satisfiedLCG.setLastFrame(ui->SB_LastLCGFrame->text().toInt(&ok));
+            satisfiedLCG.setKeyInputs(keyInputs);
+            satisfiedLCG.shouldCalcOffset(false);
+            satisfiedLCG.start();
+        }
     }
 }
 

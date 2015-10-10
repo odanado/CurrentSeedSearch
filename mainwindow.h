@@ -15,6 +15,7 @@
 #include <PokeData/PokeData.hpp>
 #include "sss4config.h"
 #include "satisfiediv.h"
+#include "satisfiedlcg.h"
 
 namespace Ui {
 class MainWindow;
@@ -69,6 +70,7 @@ private:
     QList<PokeRNG::u32> keyInputs;
 
     SatisfiedIV satisfiedIV;
+    SatisfiedLCG satisfiedLCG;
 
 };
 
