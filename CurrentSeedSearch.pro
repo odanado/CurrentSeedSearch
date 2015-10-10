@@ -29,7 +29,7 @@ SOURCES += main.cpp\
     PokeData/Nature.cpp \
     satisfiediv.cpp \
     parametersettingdialog.cpp \
-    satisfiedivresult.cpp
+    satisfiedresult.cpp
 
 HEADERS  += mainwindow.h \
     sss4config.h \
@@ -52,7 +52,7 @@ HEADERS  += mainwindow.h \
     PokeData/Nature.hpp \
     satisfiediv.h \
     parametersettingdialog.h \
-    satisfiedivresult.h
+    satisfiedresult.h
 
 FORMS    += mainwindow.ui \
     parametersettingdialog.ui

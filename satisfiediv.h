@@ -6,7 +6,7 @@
 #include <QString>
 #include <PokeRNG/PokeRNG.hpp>
 
-#include "satisfiedivresult.h"
+#include "satisfiedresult.h"
 
 class SatisfiedIV : public QThread
 {
@@ -38,10 +38,7 @@ private:
     PokeRNG::LCG5Gen lcg;
     PokeRNG::MT mt;
 
-    void calc(QList<SatisfiedIVResult> *results);
-    QString keyDecode(PokeRNG::u32 keyInput);
-    QStringList keyTexts;
-
+    void calc(QList<SatisfiedResult> *results);
 
 signals:
     void notifyComplated(const QString&);

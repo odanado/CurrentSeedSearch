@@ -4,29 +4,33 @@
 #include <PokeRNG/PokeRNG.hpp>
 #include <QList>
 
-class SatisfiedIVResult
+class SatisfiedResult
 {
 public:
-    SatisfiedIVResult();
-    SatisfiedIVResult(PokeRNG::u64 seed1, const PokeRNG::DateTime &dateTime,const QList<PokeRNG::u32> &satisfiedFrames, PokeRNG::u32 timer0, PokeRNG::u32 key);
+    SatisfiedResult();
+    SatisfiedResult(PokeRNG::u64 seed1, const PokeRNG::DateTime &dateTime,const QList<PokeRNG::u64> &satisfiedFrames, PokeRNG::u32 timer0, PokeRNG::u32 key);
     void setSeed1(PokeRNG::u64 seed1);
     void setDateTime(const PokeRNG::DateTime &dateTime);
-    void setSatisfiedFrames(const QList<PokeRNG::u32> &satisfiedFrames);
+    void setSatisfiedFrames(const QList<PokeRNG::u64> &satisfiedFrames);
     void setTimer0(PokeRNG::u32 timer0);
     void setKey(PokeRNG::u32 key);
 
     PokeRNG::u64 getSeed1() const;
     PokeRNG::DateTime getDateTime() const;
-    QList<PokeRNG::u32> getSatisfiedFrames() const;
+    QList<PokeRNG::u64> getSatisfiedFrames() const;
     PokeRNG::u32 getTimer0() const;
     PokeRNG::u32 getKey() const;
+    QString getKeyText() const ;
 
 private:
     PokeRNG::u64 seed1;
     PokeRNG::DateTime dateTime;
-    QList<PokeRNG::u32> satisfiedFrames;
+    QList<PokeRNG::u64> satisfiedFrames;
     PokeRNG::u32 timer0;
     PokeRNG::u32 key;
+
+    QString keyDecode(PokeRNG::u32 keyInput) const;
+    static const QStringList keyTexts;
 };
 
 #endif // SATISFIEDIVRESULT_H

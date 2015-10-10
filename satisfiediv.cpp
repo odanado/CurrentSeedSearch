@@ -2,23 +2,13 @@
 
 #define CHECK_IV(i) (lowerIVs[i]<=IVs[i]&&IVs[i]<=upperIVs[i])
 
-SatisfiedIV::SatisfiedIV() :
-    keyTexts({"A","B","Se","St","右","左","上","下","R","L","X","Y"}) {
+SatisfiedIV::SatisfiedIV() {
 }
 
-QString SatisfiedIV::keyDecode(PokeRNG::u32 keyInput) {
-    keyInput ^= 0x2fff;
-    QString ret;
-    for(int i=0;i<keyTexts.size();i++) {
-        if(keyInput>>i&1) ret += keyTexts[i];
-    }
-
-    return ret;
-}
 
 void SatisfiedIV::run() {
     QString result;
-    QList<SatisfiedIVResult> results;
+    QList<SatisfiedResult> results;
     for(const auto &keyInput : keyInputs) {
         param.set_key(keyInput);
         for(auto timer0=param.get_timer0_min();timer0<=param.get_timer0_max();++timer0) {
@@ -55,7 +45,7 @@ void SatisfiedIV::run() {
         t += QString::asprintf("timer0: %x\n",ret.getTimer0());
 
         if(keyInputs.size() > 1) {
-            t += "キー入力: " + keyDecode(ret.getKey())+"\n";
+            t += "キー入力: " + ret.getKeyText() + "\n";
         }
         t += QString::asprintf("seed1: %016llX\n",ret.getSeed1());
         t += "個体値乱数列の消費数: ";
@@ -72,10 +62,10 @@ void SatisfiedIV::run() {
     emit notifyComplated(result);
 }
 
-void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
+void SatisfiedIV::calc(QList<SatisfiedResult> *results) {
     PokeRNG::u32 IVs[6]={};
     PokeRNG::u64 cur;
-    QList<PokeRNG::u32> satisfiedFrames;
+    QList<PokeRNG::u64> satisfiedFrames;
 
     auto seed1 = lcg.next(calc5GenSeed(param));
 
@@ -97,7 +87,7 @@ void SatisfiedIV::calc(QList<SatisfiedIVResult> *results) {
     }
 
     if(satisfiedFrames.size()) {
-        results->append(SatisfiedIVResult(seed1,param.get_date_time(),satisfiedFrames,param.get_timer0(),param.get_key()));
+        results->append(SatisfiedResult(seed1,param.get_date_time(),satisfiedFrames,param.get_timer0(),param.get_key()));
     }
 }
 
