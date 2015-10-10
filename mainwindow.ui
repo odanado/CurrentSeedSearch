@@ -35,7 +35,7 @@
        <rect>
         <x>5</x>
         <y>150</y>
-        <width>291</width>
+        <width>367</width>
         <height>26</height>
        </rect>
       </property>
@@ -48,10 +48,18 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="SB_FirstFrame"/>
+        <widget class="QSpinBox" name="SB_FirstFrame">
+         <property name="maximum">
+          <number>1048575</number>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="SB_LastFrame"/>
+        <widget class="QSpinBox" name="SB_LastFrame">
+         <property name="maximum">
+          <number>1048575</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -910,6 +918,45 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>SB_Year</tabstop>
+  <tabstop>SB_Month</tabstop>
+  <tabstop>SB_Day</tabstop>
+  <tabstop>SB_Hour</tabstop>
+  <tabstop>SB_Minute</tabstop>
+  <tabstop>SB_Second</tabstop>
+  <tabstop>SB_SecondRange</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>CB_PokemonName</tabstop>
+  <tabstop>SB_Level</tabstop>
+  <tabstop>CB_NatureName</tabstop>
+  <tabstop>SB_StatsH</tabstop>
+  <tabstop>SB_StatsA</tabstop>
+  <tabstop>SB_StatsB</tabstop>
+  <tabstop>SB_StatsC</tabstop>
+  <tabstop>SB_StatsD</tabstop>
+  <tabstop>SB_StatsS</tabstop>
+  <tabstop>SB_FirstFrame</tabstop>
+  <tabstop>SB_LastFrame</tabstop>
+  <tabstop>BTN_EXEC</tabstop>
+  <tabstop>LE_Repohari</tabstop>
+  <tabstop>SB_LastLCGFrame</tabstop>
+  <tabstop>SB_FirstLCGFrame</tabstop>
+  <tabstop>BTN_ParameterSetting</tabstop>
+  <tabstop>CB_KeyInputA</tabstop>
+  <tabstop>CB_KeyInputB</tabstop>
+  <tabstop>CB_KeyInputX</tabstop>
+  <tabstop>CB_KeyInputY</tabstop>
+  <tabstop>CB_KeyInputL</tabstop>
+  <tabstop>CB_KeyInputR</tabstop>
+  <tabstop>CB_KeyInputUp</tabstop>
+  <tabstop>CB_KeyInputDown</tabstop>
+  <tabstop>CB_KeyInputLeft</tabstop>
+  <tabstop>CB_KeyInputRight</tabstop>
+  <tabstop>CB_KeyInputSt</tabstop>
+  <tabstop>CB_KeyInputSe</tabstop>
+  <tabstop>TE_Result</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
