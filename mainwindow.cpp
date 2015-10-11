@@ -61,8 +61,15 @@ void MainWindow::on_BTN_EXEC_clicked()
                 t.sprintf("%d-%d\n",lowerIVs[i],upperIVs[i]);
                 ivRange += t;
             }
-
             ui->TE_Result->setText(ivRange);
+
+            if(!validIVs()) {
+                QMessageBox msgBox;
+                msgBox.setText("入力した実数値が個体値0-31に収まっていません");
+                msgBox.exec();
+                return;
+            }
+
             satisfiedIV.setParameter(param);
             satisfiedIV.setLowerIVs(lowerIVs);
             satisfiedIV.setUpperIVs(upperIVs);
@@ -316,4 +323,19 @@ void MainWindow::initKeyInputs() {
             keyInputs.append(bit ^ 0x2fff);
         }
     }
+}
+
+/**
+ * @fn
+ * 個体値候補が有効か調べる
+ * @brief MainWindow::validIVs
+ * @return 有効ならtrue
+ */
+bool MainWindow::validIVs() {
+    bool ret=true;
+    for(int i=0;i<6;i++) {
+        ret &= (lowerIVs[i] <= upperIVs[i]);
+    }
+
+    return ret;
 }
