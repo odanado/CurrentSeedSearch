@@ -81,11 +81,21 @@ void MainWindow::on_BTN_EXEC_clicked()
             satisfiedIV.start();
         }
         else if(ui->tabWidget->currentIndex() == 1) {
+            bool validRepohari = true;
             QList<PokeRNG::u64> lcgSeq;
             QString repohari = ui->LE_Repohari->text();
             for(const auto &val : repohari) {
                 lcgSeq.append(val.digitValue());
+                validRepohari &= (0<=val.digitValue()&&val.digitValue()<8);
             }
+
+            if(!validRepohari) {
+                QMessageBox msgBox;
+                msgBox.setText("入力したレポ針の値が0-7に収まっていません");
+                msgBox.exec();
+                return;
+            }
+
             satisfiedLCG.setParameter(param);
             satisfiedLCG.setLCGSequence(lcgSeq);
             satisfiedLCG.setFirstDateTimeIt(firstDateTimeIt);
