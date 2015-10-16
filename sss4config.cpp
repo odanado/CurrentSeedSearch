@@ -27,7 +27,7 @@ bool SSS4Config::parse() {
     PokeRNG::u32 vcount, gxstat, frame, timer0Min, timer0Max;
     bool ok;
 
-    if(configLines.count() == 7) {
+    if(configLines.count() == 6 || configLines.count() == 7) {
         // 古いバージョン
         vcount = configLines.at(0).toInt(&ok,16);
         if(!ok) return false;
