@@ -53,6 +53,13 @@ void MainWindow::on_BTN_EXEC_clicked()
         bool ok;
         ui->TE_Result->setText("");
         if(ui->tabWidget->currentIndex() == 0) {
+
+            if(ui->SB_FirstFrame->text().toInt(&ok) > ui->SB_LastFrame->text().toInt(&ok)) {
+                QMessageBox msgBox;
+                msgBox.setText("消費数の範囲を正しく指定してください");
+                msgBox.exec();
+                return;
+            }
             calcIVs();
             QString ivRange;
             ivRange = "個体値の範囲\n";
@@ -94,6 +101,14 @@ void MainWindow::on_BTN_EXEC_clicked()
                 msgBox.setText("入力したレポ針の値が0-7に収まっていません");
                 msgBox.exec();
                 return;
+            }
+
+            if(ui->SB_FirstLCGFrame->text().toInt(&ok) > ui->SB_LastLCGFrame->text().toInt(&ok)) {
+                QMessageBox msgBox;
+                msgBox.setText("消費数の範囲を正しく指定してください");
+                msgBox.exec();
+                return;
+
             }
 
             satisfiedLCG.setParameter(param);
