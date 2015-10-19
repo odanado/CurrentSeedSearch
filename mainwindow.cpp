@@ -60,6 +60,14 @@ void MainWindow::on_BTN_EXEC_clicked()
                 msgBox.exec();
                 return;
             }
+
+            if(PokeData::pokemonIndexes.find(ui->CB_NatureName->currentText().toStdString()) == PokeData::pokemonIndexes.end()) {
+                QMessageBox msgBox;
+                msgBox.setText("種族名が不正です");
+                msgBox.exec();
+                return;
+            }
+
             calcIVs();
             QString ivRange;
             ivRange = "個体値の範囲\n";
